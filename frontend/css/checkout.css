@@ -1,0 +1,258 @@
+/* ==========================================================================
+   ROAM & REV - CHECKOUT STYLESHEET
+   5-Step Wizard, Shipping Form, Payment Radios, QR Code, Confirmation
+   ========================================================================== */
+
+.checkout-page {
+  padding-bottom: var(--space-20);
+}
+
+/* Stepper Bar */
+.checkout-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-10);
+  padding: var(--space-4) 0;
+  overflow-x: auto;
+}
+
+.step-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  position: relative;
+  white-space: nowrap;
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: all var(--transition-normal);
+}
+
+.step-node.active .step-circle {
+  background: var(--accent-orange);
+  border-color: var(--accent-orange);
+  color: #FFF;
+  box-shadow: 0 0 12px var(--accent-orange-glow);
+}
+
+.step-node.completed .step-circle {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #FFF;
+}
+
+.step-node.active {
+  color: var(--text-primary);
+}
+
+.step-line {
+  width: 40px;
+  height: 2px;
+  background: var(--border-subtle);
+  margin: 0 10px;
+}
+
+.step-line.active {
+  background: var(--accent-orange);
+}
+
+/* Checkout Layout */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.checkout-step-section {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  display: none;
+}
+
+.checkout-step-section.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-heading-icon {
+  color: var(--accent-orange);
+}
+
+/* Form Grid */
+.checkout-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.checkout-form-grid .full-width {
+  grid-column: span 2;
+}
+
+/* Payment Method Cards */
+.payment-methods-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.payment-method-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all var(--transition-fast);
+}
+
+.payment-method-card:hover {
+  border-color: var(--border-active);
+  background: var(--bg-elevated);
+}
+
+.payment-method-card.selected {
+  border-color: var(--accent-orange);
+  background: rgba(255, 85, 0, 0.08);
+}
+
+.payment-method-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.payment-radio {
+  accent-color: var(--accent-orange);
+  width: 18px;
+  height: 18px;
+}
+
+.payment-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.payment-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Payment Details Dynamic Subpanels */
+.payment-subpanel {
+  display: none;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.payment-subpanel.active {
+  display: block;
+}
+
+/* UPI QR Simulation */
+.upi-qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+}
+
+.mock-qr-code {
+  width: 160px;
+  height: 160px;
+  background: #FFF;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* Step 5: Order Confirmation */
+.order-success-card {
+  text-align: center;
+  padding: var(--space-10) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success-check-circle {
+  width: 80px;
+  height: 80px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 2px solid var(--accent-green);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-green);
+  margin-bottom: var(--space-6);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.order-id-badge {
+  font-family: var(--font-tech);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent-orange);
+  background: rgba(255, 85, 0, 0.1);
+  border: 1px dashed var(--accent-orange);
+  padding: 6px 16px;
+  border-radius: var(--radius-sm);
+  margin: var(--space-3) 0 var(--space-6);
+  display: inline-block;
+}
+
+@media (max-width: 900px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+  .checkout-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .checkout-form-grid .full-width {
+    grid-column: span 1;
+  }
+}

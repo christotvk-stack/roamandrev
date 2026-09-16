@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Motorcycle & Travel Equipment | ROAM & REV</title>
+  <meta name="description" content="Browse premium motorcycle accessories, MT-15 and NS200 gear, waterproof travel backpacks, riding gloves, and touring luggage with guaranteed compatibility." />
+  
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/shop.css" />
+</head>
+<body>
+
+  <!-- Sticky Professional Navigation Header -->
+  <header class="navbar" id="site-header">
+    <div class="container nav-inner">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <div class="brand-name">ROAM<span>&</span>REV</div>
+          <div class="brand-tagline">MOTO & OVERLAND CO.</div>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="/index.html" class="nav-link">Home</a>
+        <a href="/shop.html" class="nav-link active">Shop All</a>
+        <a href="/shop.html?category=motorcycle-accessories" class="nav-link">Motorcycle Gear</a>
+        <a href="/shop.html?category=travel-accessories" class="nav-link">Travel Gear</a>
+        <a href="/shop.html?category=riding-gear" class="nav-link">Riding Armor</a>
+        <a href="/shop.html?sort=newest" class="nav-link badge-pill">New Arrivals</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="search-wrapper">
+          <div class="search-input-container">
+            <span>🔍</span>
+            <input type="text" id="global-search-input" placeholder="Search MT15, gear..." autocomplete="off" />
+          </div>
+          <div class="search-suggestions" id="global-search-suggestions"></div>
+        </div>
+
+        <a href="/wishlist.html" class="nav-action-btn" title="Saved Wishlist">
+          ♥
+          <span class="nav-badge-counter wishlist-badge-count" style="display:none;">0</span>
+        </a>
+
+        <a href="/cart.html" class="nav-action-btn" title="Shopping Cart">
+          🛒
+          <span class="nav-badge-counter cart-badge-count" style="display:none;">0</span>
+        </a>
+
+        <div class="account-dropdown-wrapper">
+          <button class="nav-action-btn" id="account-menu-trigger" title="Account">👤</button>
+          <div class="account-menu" id="account-dropdown"></div>
+        </div>
+
+        <button class="nav-action-btn mobile-toggle" id="mobile-nav-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div id="mobile-nav-drawer" class="modal-overlay" style="z-index:3000;">
+    <div style="background:var(--bg-secondary); width:300px; height:100%; padding:24px; display:flex; flex-direction:column; gap:20px; position:absolute; right:0; top:0;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:800; font-size:1.2rem;">MENU</span>
+        <button id="mobile-nav-close" style="background:none; color:#FFF; font-size:1.5rem; cursor:pointer;">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px; font-size:1.1rem; font-weight:700;">
+        <a href="/index.html">Home</a>
+        <a href="/shop.html">Shop All Gear</a>
+        <a href="/shop.html?category=motorcycle-accessories">Motorcycle Gear & Parts</a>
+        <a href="/shop.html?category=travel-accessories">Travel Bags & Organizers</a>
+        <a href="/shop.html?category=riding-gear">Riding Protection & Gloves</a>
+        <a href="/wishlist.html">My Wishlist</a>
+        <a href="/cart.html">Shopping Cart</a>
+        <a href="/orders.html">Track Orders</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content shop-page">
+    <!-- Shop Hero Header Banner -->
+    <div class="shop-banner">
+      <div class="container">
+        <span class="badge-tag badge-tag-orange" style="margin-bottom:8px;">Tactical Catalog</span>
+        <h1>ALL ADVENTURE & MOTORCYCLE GEAR</h1>
+        <p>Field-tested motorcycle luggage, crash protection, navigation mounts, and modular travel accessories.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="shop-layout">
+        
+        <!-- SIDEBAR FILTERS -->
+        <aside class="filter-sidebar" id="filter-sidebar">
+          <div class="filter-header">
+            <h3><span>⚡</span> Filters</h3>
+            <button class="btn-reset-filters" id="btn-reset-filters">Reset All</button>
+            <button id="mobile-filter-close" style="display:none; background:none; color:#FFF; font-size:1.2rem; cursor:pointer;">✕</button>
+          </div>
+
+          <!-- Filter 1: Shop By Bike -->
+          <div class="filter-group">
+            <div class="filter-group-title">
+              <span>Bike Compatibility</span>
+            </div>
+            <div class="bike-filter-options">
+              <label class="custom-checkbox-label">
+                <input type="radio" name="filter-bike" value="all" checked />
+                <span>All Bikes & Universal</span>
+              </label>
+              <label class="custom-checkbox-label">
+                <input type="radio" name="filter-bike" value="MT-15" />
+                <span>Yamaha MT-15 Fit</span>
+                <span class="item-count-badge">✓ Verified</span>
+              </label>
+              <label class="custom-checkbox-label">
+                <input type="radio" name="filter-bike" value="NS200" />
+                <span>Bajaj Pulsar NS200 Fit</span>
+                <span class="item-count-badge">✓ Verified</span>
+              </label>
+              <label class="custom-checkbox-label">
+                <input type="radio" name="filter-bike" value="Universal" />
+                <span>Universal Fitment</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Filter 2: Categories -->
+          <div class="filter-group">
+            <div class="filter-group-title">
+              <span>Category</span>
+            </div>
+            <div class="bike-filter-options">
+              <label class="custom-checkbox-label">
+                <input type="radio" name="filter-category" value="all" checked />
+                <span>All Categories</span>
+              </label>
+              <label class="custom-checkbox-label">
+                <input type="radio" name="filter-category" value="motorcycle-accessories" />
+                <span>Motorcycle Accessories</span>
+              </label>
+              <label class="custom-checkbox-label">
+                <input type="radio" name="filter-category" value="travel-accessories" />
+                <span>Travel Accessories</span>
+              </label>
+              <label class="custom-checkbox-label">
+                <input type="radio" name="filter-category" value="riding-gear" />
+                <span>Riding Gear & Armor</span>
+              </label>
+              <label class="custom-checkbox-label">
+                <input type="radio" name="filter-category" value="touring-essentials" />
+                <span>Touring Luggage & Bags</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Filter 3: Price Slider -->
+          <div class="filter-group">
+            <div class="filter-group-title">
+              <span>Price Ceiling</span>
+            </div>
+            <div class="price-slider-container">
+              <input type="range" class="price-range-slider" id="filter-price-slider" min="499" max="10000" step="250" value="10000" />
+              <div class="price-values-display">
+                <span>₹499</span>
+                <span id="price-max-val" style="color:var(--accent-orange);">₹10,000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filter 4: In-Stock Toggle -->
+          <div class="filter-group">
+            <label class="custom-checkbox-label" style="font-weight:700;">
+              <input type="checkbox" id="filter-in-stock" />
+              <span>In-Stock Items Only</span>
+            </label>
+          </div>
+        </aside>
+
+        <!-- MAIN SHOP GRID & TOOLBAR -->
+        <section class="shop-main">
+          <!-- Toolbar -->
+          <div class="shop-toolbar">
+            <div class="results-count" id="results-count">
+              Loading gear catalogue...
+            </div>
+
+            <div class="toolbar-controls">
+              <button class="mobile-filter-trigger" id="mobile-filter-btn">
+                <span>⚙</span> Filter Gear
+              </button>
+
+              <div class="sort-select-wrapper">
+                <label for="shop-sort-select">Sort by:</label>
+                <select id="shop-sort-select" class="sort-select">
+                  <option value="recommended">Featured / Recommended</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="rating">Highest Customer Rating</option>
+                  <option value="newest">Newest Releases</option>
+                  <option value="discount">Biggest Savings %</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Filter Pills Bar -->
+          <div class="active-filters-bar" id="active-filters-bar" style="display:none;"></div>
+
+          <!-- Product Cards Grid -->
+          <div class="shop-grid" id="shop-product-grid"></div>
+
+          <!-- Pagination -->
+          <div class="pagination-container" id="pagination-container"></div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Quick View Modal Container -->
+  <div id="quickview-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close-btn" onclick="UI.closeQuickView()">✕</button>
+      <div id="quickview-content"></div>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/index.html" class="brand-logo">
+            <div class="brand-icon">⚡</div>
+            <div class="brand-text">
+              <div class="brand-name">ROAM<span>&</span>REV</div>
+              <div class="brand-tagline">MOTO & OVERLAND CO.</div>
+            </div>
+          </a>
+          <p>Equipping adventurous riders and global nomads with battlefield-grade motorcycle accessories and overland travel bags.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Bikes & Gear</h4>
+          <div class="footer-links">
+            <a href="/shop.html?category=motorcycle-accessories">Motorcycle Gear & Parts</a>
+            <a href="/shop.html?category=travel-accessories" class="footer-link">Travel Backpacks</a>
+            <a href="/shop.html?category=touring-essentials" class="footer-link">Touring Saddlebags</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Customer Portal</h4>
+          <div class="footer-links">
+            <a href="/orders.html" class="footer-link">Track Your Order</a>
+            <a href="/profile.html" class="footer-link">Customer Profile</a>
+            <a href="/cart.html" class="footer-link">Shopping Cart</a>
+            <a href="/wishlist.html" class="footer-link">Saved Wishlist</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Discount Perks</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary);">Apply code <strong style="color:var(--accent-orange);">ADVENTURE10</strong> at checkout for 10% off.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2026 ROAM & REV Moto & Overland Outfitters.</div>
+        <div class="payment-badges">
+          <span class="pay-badge">UPI</span>
+          <span class="pay-badge">RuPay</span>
+          <span class="pay-badge">VISA</span>
+          <span class="pay-badge">MasterCard</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/wishlist.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/shop.js"></script>
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROAM & REV | Premium Motorcycle & Overland Travel Gear</title>
+  <meta name="description" content="Premium adventure travel equipment, Yamaha MT-15 accessories, Bajaj Pulsar NS200 parts, and universal touring gear built for demanding journeys." />
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  
+  <style>
+    /* Homepage Hero Specific Styles */
+    .hero-section {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      background: #0B0E14;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(90deg, rgba(10, 13, 20, 0.95) 0%, rgba(10, 13, 20, 0.75) 50%, rgba(10, 13, 20, 0.4) 100%),
+        url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1920&q=85');
+      background-size: cover;
+      background-position: center right;
+      transform: scale(1.03);
+      animation: heroZoom 14s infinite alternate ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes heroZoom {
+      0% { transform: scale(1.02); }
+      100% { transform: scale(1.08); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding: var(--space-12) 0;
+    }
+
+    .hero-tag {
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: var(--space-4);
+      text-transform: uppercase;
+    }
+
+    .hero-title span {
+      color: var(--accent-orange);
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-8);
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .hero-stats-row {
+      margin-top: var(--space-12);
+      display: flex;
+      gap: var(--space-8);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: var(--space-6);
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-tech);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #FFF;
+    }
+
+    .hero-stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Bike Selector Cards */
+    .bike-selector-section {
+      padding: var(--space-16) 0;
+      background: var(--bg-primary);
+    }
+
+    .bike-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      margin-bottom: var(--space-10);
+    }
+
+    .bike-select-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      position: relative;
+    }
+
+    .bike-select-card:hover {
+      border-color: var(--border-medium);
+      transform: translateY(-4px);
+    }
+
+    .bike-select-card.active {
+      border-color: var(--accent-orange);
+      background: rgba(255, 85, 0, 0.06);
+      box-shadow: 0 0 20px var(--accent-orange-glow);
+    }
+
+    .bike-select-card.active::after {
+      content: '✓ Selected';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-family: var(--font-tech);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+    }
+
+    .bike-card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .bike-card-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .bike-card-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Category Cards Grid */
+    .category-showcase-section {
+      padding: var(--space-16) 0;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+    }
+
+    .category-card {
+      position: relative;
+      height: 380px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-6);
+      transition: all var(--transition-normal);
+    }
+
+    .category-card-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform var(--transition-slow);
+      z-index: 1;
+    }
+
+    .category-card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(10, 13, 20, 0.2) 0%, rgba(10, 13, 20, 0.95) 90%);
+      z-index: 2;
+    }
+
+    .category-card:hover .category-card-bg {
+      transform: scale(1.1);
+    }
+
+    .category-card:hover {
+      border-color: var(--accent-orange);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .category-card-content {
+      position: relative;
+      z-index: 3;
+    }
+
+    .category-card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #FFF;
+      margin-bottom: 6px;
+    }
+
+    .category-card-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-4);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .category-card-btn {
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Pillars */
+    .pillars-section {
+      padding: var(--space-16) 0;
+      background: var(--bg-primary);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+    }
+
+    .pillar-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-orange), transparent);
+    }
+
+    .pillar-icon {
+      font-size: 2rem;
+      margin-bottom: var(--space-4);
+    }
+
+    .pillar-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+    }
+
+    .pillar-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) {
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .bike-cards-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .category-grid { grid-template-columns: 1fr; }
+      .hero-stats-row { flex-direction: column; gap: var(--space-4); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Professional Navigation Header -->
+  <header class="navbar" id="site-header">
+    <div class="container nav-inner">
+      <!-- Logo -->
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <div class="brand-name">ROAM<span>&</span>REV</div>
+          <div class="brand-tagline">MOTO & OVERLAND CO.</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-menu">
+        <a href="/index.html" class="nav-link active">Home</a>
+        <a href="/shop.html" class="nav-link">Shop All</a>
+        <a href="/shop.html?category=motorcycle-accessories" class="nav-link">Motorcycle Gear</a>
+        <a href="/shop.html?category=travel-accessories" class="nav-link">Travel Gear</a>
+        <a href="/shop.html?category=riding-gear" class="nav-link">Riding Armor</a>
+        <a href="/shop.html?sort=newest" class="nav-link badge-pill">New Arrivals</a>
+      </nav>
+
+      <!-- Nav Actions (Search, Wishlist, Cart, User) -->
+      <div class="nav-actions">
+        <!-- Live Search -->
+        <div class="search-wrapper">
+          <div class="search-input-container">
+            <span>🔍</span>
+            <input type="text" id="global-search-input" placeholder="Search MT15, gear..." autocomplete="off" />
+          </div>
+          <div class="search-suggestions" id="global-search-suggestions"></div>
+        </div>
+
+        <!-- Wishlist Button -->
+        <a href="/wishlist.html" class="nav-action-btn" title="Saved Wishlist">
+          ♥
+          <span class="nav-badge-counter wishlist-badge-count" style="display:none;">0</span>
+        </a>
+
+        <!-- Cart Button -->
+        <a href="/cart.html" class="nav-action-btn" title="Shopping Cart">
+          🛒
+          <span class="nav-badge-counter cart-badge-count" style="display:none;">0</span>
+        </a>
+
+        <!-- Account Dropdown Trigger -->
+        <div class="account-dropdown-wrapper">
+          <button class="nav-action-btn" id="account-menu-trigger" title="Account">
+            👤
+          </button>
+          <div class="account-menu" id="account-dropdown"></div>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button class="nav-action-btn mobile-toggle" id="mobile-nav-toggle">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-nav-drawer" class="modal-overlay" style="z-index:3000;">
+    <div style="background:var(--bg-secondary); width:300px; height:100%; padding:24px; display:flex; flex-direction:column; gap:20px; position:absolute; right:0; top:0;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:800; font-size:1.2rem;">MENU</span>
+        <button id="mobile-nav-close" style="background:none; color:#FFF; font-size:1.5rem; cursor:pointer;">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px; font-size:1.1rem; font-weight:700;">
+        <a href="/index.html">Home</a>
+        <a href="/shop.html">Shop All Gear</a>
+        <a href="/shop.html?category=motorcycle-accessories">Motorcycle Gear & Parts</a>
+        <a href="/shop.html?category=travel-accessories">Travel Bags & Organizers</a>
+        <a href="/shop.html?category=riding-gear">Riding Protection & Gloves</a>
+        <a href="/wishlist.html">My Wishlist</a>
+        <a href="/cart.html">Shopping Cart</a>
+        <a href="/orders.html">Track Orders</a>
+        <a href="/profile.html">My Profile</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content">
+    <!-- Cinematic Full-Width Hero Section -->
+    <section class="hero-section">
+      <div class="hero-bg"></div>
+      <div class="container hero-content">
+        <span class="badge-tag badge-tag-orange hero-tag">
+          ⚡ Precision Moto & Expedition Outfitters
+        </span>
+        <h1 class="hero-title">
+          RIDE. TRAVEL. <span>EXPLORE.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Engineered high-performance motorcycle hardware, protective armor, and expedition-grade travel gear. No compromises.
+        </p>
+        <div class="hero-actions">
+          <a href="/shop.html?category=motorcycle-accessories" class="btn btn-primary btn-lg">
+            SHOP MOTORCYCLE GEAR
+          </a>
+          <a href="/shop.html?category=travel-accessories" class="btn btn-secondary btn-lg">
+            EXPLORE TRAVEL GEAR
+          </a>
+        </div>
+
+        <div class="hero-stats-row">
+          <div>
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Fitment Guarantee</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">1680D</div>
+            <div class="hero-stat-label">Ballistic Materials</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">24h</div>
+            <div class="hero-stat-label">Fast Dispatch</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY SECTION -->
+    <section class="category-showcase-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="subtitle">Curated Equipment</span>
+          <h2>DISCOVER BY PURPOSE</h2>
+          <p>Whether you're carving canyon apexes or crossing mountain passes, we supply the hardware.</p>
+        </div>
+
+        <div class="category-grid">
+          <!-- Card 1 -->
+          <a href="/shop.html?category=motorcycle-accessories" class="category-card">
+            <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <span class="badge-tag badge-tag-orange" style="margin-bottom:8px;">8 Products</span>
+              <h3 class="category-card-title">Motorcycle Accessories</h3>
+              <p class="category-card-desc">Precision motorcycle add-ons and protection hardware engineered for durability.</p>
+              <div class="category-card-btn">Explore Gear →</div>
+            </div>
+          </a>
+
+          <!-- Card 2 -->
+          <a href="/shop.html?category=travel-accessories" class="category-card">
+            <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <span class="badge-tag badge-tag-cyan" style="margin-bottom:8px;">8 Products</span>
+              <h3 class="category-card-title">Travel Accessories</h3>
+              <p class="category-card-desc">Modular backpacks, anti-theft luggage, GaN adapters & packing cubes.</p>
+              <div class="category-card-btn">Explore Gear →</div>
+            </div>
+          </a>
+
+          <!-- Card 3 -->
+          <a href="/shop.html?category=riding-gear" class="category-card">
+            <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <span class="badge-tag badge-tag-green" style="margin-bottom:8px;">4 Products</span>
+              <h3 class="category-card-title">Riding Gear</h3>
+              <p class="category-card-desc">Touchscreen carbon-fiber gloves and vibration-damped cockpit mounts.</p>
+              <div class="category-card-btn">Explore Gear →</div>
+            </div>
+          </a>
+
+          <!-- Card 4 -->
+          <a href="/shop.html?category=touring-essentials" class="category-card">
+            <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <span class="badge-tag badge-tag-orange" style="margin-bottom:8px;">4 Products</span>
+              <h3 class="category-card-title">Touring Essentials</h3>
+              <p class="category-card-desc">Expandable saddlebags, dry bags, bungee nets and heavy-duty covers.</p>
+              <div class="category-card-btn">Explore Gear →</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS GRID -->
+    <section style="padding: var(--space-16) 0;">
+      <div class="container">
+        <div class="section-header">
+          <span class="subtitle">Field-Tested Equipment</span>
+          <h2>TOP EXPEDITION PICKS</h2>
+          <p>Bestselling motorcycle add-ons and rugged travel hardware backed by riders across India.</p>
+        </div>
+
+        <div id="featured-products-grid" class="grid grid-cols-4 gap-6"></div>
+
+        <div style="text-align:center; margin-top:var(--space-10);">
+          <a href="/shop.html" class="btn btn-primary btn-lg">
+            View Complete Store Catalog (24+ Items) →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERLAND ENGINEERING PILLARS -->
+    <section class="pillars-section">
+      <div class="container">
+        <div class="pillars-grid">
+          <div class="pillar-box">
+            <div class="pillar-icon">🛡️</div>
+            <h3 class="pillar-title">Engineered For Extremes</h3>
+            <p class="pillar-desc">
+              All our luggage and crash components undergo high-vibration stress testing and torrential rain immersion before release.
+            </p>
+          </div>
+
+          <div class="pillar-box">
+            <div class="pillar-icon">📦</div>
+            <h3 class="pillar-title">Zero Guesswork Fitment</h3>
+            <p class="pillar-desc">
+              We provide explicit vehicle fitment tags. Every piece of hardware is engineered to OEM bolt tolerances for seamless zero-gap fitment.
+            </p>
+          </div>
+
+          <div class="pillar-box">
+            <div class="pillar-icon">⚡</div>
+            <h3 class="pillar-title">BlueDart Air Delivery</h3>
+            <p class="pillar-desc">
+              All orders dispatched within 24 hours with BlueDart air cargo. Free delivery nationwide across India on all orders over ₹999.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Quick View Modal Container -->
+  <div id="quickview-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close-btn" onclick="UI.closeQuickView()">✕</button>
+      <div id="quickview-content"></div>
+    </div>
+  </div>
+
+  <!-- Global Professional Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/index.html" class="brand-logo">
+            <div class="brand-icon">⚡</div>
+            <div class="brand-text">
+              <div class="brand-name">ROAM<span>&</span>REV</div>
+              <div class="brand-tagline">MOTO & OVERLAND CO.</div>
+            </div>
+          </a>
+          <p>
+            Equipping adventurous riders and global nomads with battlefield-grade motorcycle accessories and overland travel bags.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-link" title="Instagram">📷</a>
+            <a href="#" class="footer-social-link" title="YouTube">📺</a>
+            <a href="#" class="footer-social-link" title="Twitter">🐦</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Shop By Gear</h4>
+          <div class="footer-links">
+            <a href="/shop.html?category=motorcycle-accessories" class="footer-link">Motorcycle Parts</a>
+            <a href="/shop.html?category=motorcycle-accessories">Motorcycle Gear & Parts</a>
+            <a href="/shop.html?category=travel-accessories" class="footer-link">Travel Backpacks</a>
+            <a href="/shop.html?category=riding-gear" class="footer-link">Riding Gloves</a>
+            <a href="/shop.html?category=touring-essentials" class="footer-link">Touring Saddlebags</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Customer Service</h4>
+          <div class="footer-links">
+            <a href="/orders.html" class="footer-link">Track Your Order</a>
+            <a href="/profile.html" class="footer-link">Customer Profile</a>
+            <a href="/cart.html" class="footer-link">Shopping Cart</a>
+            <a href="/wishlist.html" class="footer-link">Saved Wishlist</a>
+            <a href="#" class="footer-link">Warranty Policy (1 Year)</a>
+            <a href="#" class="footer-link">Returns & Refunds</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Dispatch Dispatch Newsletter</h4>
+          <p style="font-size:0.85rem; margin-bottom:12px;">Get exclusive discount drops, route guides, and motorcycle setup tips.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); Toast.show('Subscribed', 'Welcome to the ROAM & REV expedition club!', 'success'); this.reset();">
+            <div class="newsletter-input-group">
+              <input type="email" placeholder="Enter your email" required />
+              <button type="submit" class="btn btn-primary btn-sm">Join</button>
+            </div>
+          </form>
+          <div style="margin-top:16px;">
+            <span style="font-size:0.75rem; color:var(--text-muted);">Use code <strong style="color:var(--accent-orange);">ADVENTURE10</strong> for 10% off your first order.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2026 ROAM & REV Moto & Overland Outfitters. All Rights Reserved.
+        </div>
+        <div class="payment-badges">
+          <span class="pay-badge">UPI</span>
+          <span class="pay-badge">RuPay</span>
+          <span class="pay-badge">VISA</span>
+          <span class="pay-badge">MasterCard</span>
+          <span class="pay-badge">COD Available</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/wishlist.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>

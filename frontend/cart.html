@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Shopping Cart | ROAM & REV</title>
+  <meta name="description" content="Review your motorcycle accessories, apply discount coupons, and proceed to secure checkout." />
+  
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/cart.css" />
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="navbar" id="site-header">
+    <div class="container nav-inner">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <div class="brand-name">ROAM<span>&</span>REV</div>
+          <div class="brand-tagline">MOTO & OVERLAND CO.</div>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="/index.html" class="nav-link">Home</a>
+        <a href="/shop.html" class="nav-link">Shop All</a>
+        <a href="/shop.html?category=motorcycle-accessories" class="nav-link">Motorcycle Gear</a>
+        <a href="/shop.html?category=travel-accessories" class="nav-link">Travel Gear</a>
+        <a href="/shop.html?category=riding-gear" class="nav-link">Riding Armor</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="search-wrapper">
+          <div class="search-input-container">
+            <span>🔍</span>
+            <input type="text" id="global-search-input" placeholder="Search gear..." autocomplete="off" />
+          </div>
+          <div class="search-suggestions" id="global-search-suggestions"></div>
+        </div>
+
+        <a href="/wishlist.html" class="nav-action-btn" title="Saved Wishlist">
+          ♥
+          <span class="nav-badge-counter wishlist-badge-count" style="display:none;">0</span>
+        </a>
+
+        <a href="/cart.html" class="nav-action-btn" title="Shopping Cart">
+          🛒
+          <span class="nav-badge-counter cart-badge-count" style="display:none;">0</span>
+        </a>
+
+        <div class="account-dropdown-wrapper">
+          <button class="nav-action-btn" id="account-menu-trigger" title="Account">👤</button>
+          <div class="account-menu" id="account-dropdown"></div>
+        </div>
+
+        <button class="nav-action-btn mobile-toggle" id="mobile-nav-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content cart-page">
+    <div class="container" style="padding-top: var(--space-8);">
+      
+      <div class="section-header" style="text-align:left; margin-bottom: var(--space-8);">
+        <span class="subtitle">Secure Dispatch Preparation</span>
+        <h1>YOUR EXPEDITION CART</h1>
+      </div>
+
+      <div id="cart-content-wrapper">
+        <div class="cart-layout">
+          
+          <!-- Left: Cart Items Table -->
+          <div class="cart-items-wrapper">
+            <table class="cart-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Unit Price</th>
+                  <th>Quantity</th>
+                  <th>Subtotal</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="cart-tbody"></tbody>
+            </table>
+          </div>
+
+          <!-- Right: Summary & Checkout -->
+          <div class="cart-summary-card">
+            <h3 class="summary-title">Order Summary</h3>
+
+            <!-- Free Shipping Progress -->
+            <div class="free-shipping-box" id="free-shipping-container">
+              <div class="shipping-progress-text" id="free-shipping-text">
+                Add items to qualify for free courier delivery
+              </div>
+              <div class="shipping-progress-bar">
+                <div class="shipping-progress-fill" id="free-shipping-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Promo Coupon Box -->
+            <div class="promo-box">
+              <span style="font-size:0.85rem; font-weight:600; color:var(--text-secondary);">Discount Coupon Code:</span>
+              <div class="promo-input-group" id="promo-input-group">
+                <input type="text" id="coupon-input" placeholder="e.g. ADVENTURE10" />
+                <button class="btn btn-secondary btn-sm" id="btn-apply-coupon">Apply</button>
+              </div>
+              <div id="applied-coupon-display" style="display:none;"></div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">
+                Popular: <code style="color:var(--accent-orange);">ADVENTURE10</code> (10% off), <code style="color:var(--accent-orange);">REV15</code> (15% off > ₹2499)
+              </div>
+            </div>
+
+            <!-- Cost Breakdown -->
+            <div class="summary-breakdown">
+              <div class="summary-row">
+                <span>Cart Subtotal</span>
+                <span id="cart-subtotal" style="font-family:var(--font-tech); font-weight:700;">₹0</span>
+              </div>
+              <div class="summary-row" id="coupon-discount-row" style="display:none;">
+                <span style="color:var(--accent-green);">Promo Discount</span>
+                <span id="cart-discount" style="font-family:var(--font-tech); font-weight:700; color:var(--accent-green);">-₹0</span>
+              </div>
+              <div class="summary-row">
+                <span>Shipping Delivery</span>
+                <span id="cart-shipping" style="font-family:var(--font-tech); font-weight:700;">₹0</span>
+              </div>
+              <div class="summary-row total-row">
+                <span>Estimated Total</span>
+                <span class="total-amount" id="cart-grand-total">₹0</span>
+              </div>
+            </div>
+
+            <a href="/checkout.html" class="btn btn-primary btn-block btn-lg" style="letter-spacing:0.02em;">
+              PROCEED TO CHECKOUT →
+            </a>
+
+            <div style="text-align:center;">
+              <a href="/shop.html" style="font-size:0.85rem; color:var(--text-muted); text-decoration:underline;">
+                ← Continue Shopping
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2026 ROAM & REV Moto & Overland Outfitters.</div>
+        <div class="payment-badges">
+          <span class="pay-badge">UPI</span>
+          <span class="pay-badge">RuPay</span>
+          <span class="pay-badge">VISA</span>
+          <span class="pay-badge">MasterCard</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/wishlist.js"></script>
+  <script src="/js/ui.js"></script>
+  
+  <script>
+    // Cart Page Rendering Script
+    function renderCartPage() {
+      const items = window.Cart.items || [];
+      const tbody = document.getElementById('cart-tbody');
+      const wrapper = document.getElementById('cart-content-wrapper');
+
+      if (!items.length) {
+        if (wrapper) {
+          wrapper.innerHTML = `
+            <div class="cart-empty-view">
+              <div style="font-size:3rem; margin-bottom:12px;">🛒</div>
+              <h2>Your Expedition Cart is Currently Empty</h2>
+              <p style="margin:12px 0 24px; color:var(--text-secondary);">You haven't equipped any motorcycle or travel gear yet.</p>
+              <a href="/shop.html" class="btn btn-primary btn-lg">Explore All Gear</a>
+            </div>
+          `;
+        }
+        return;
+      }
+
+      if (tbody) {
+        tbody.innerHTML = items.map(item => `
+          <tr class="cart-item-row">
+            <td>
+              <div class="cart-product-cell">
+                <img src="${item.image || ''}" class="cart-item-thumb" alt="${item.name}">
+                <div class="cart-item-details">
+                  <div style="font-size:0.75rem;">${UI.renderCompatibilityBadge(item.bikeCompatibility)}</div>
+                  <a href="/product.html?id=${item.productId}" class="cart-item-name">${item.name}</a>
+                  <span style="font-size:0.75rem; color:var(--text-muted);">SKU: ${item.productId}</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="cart-item-price">${UI.formatINR(item.price)}</div>
+            </td>
+            <td>
+              <div class="quantity-stepper" style="width:110px;">
+                <button class="qty-btn" onclick="window.Cart.updateQuantity('${item.productId}', ${item.quantity - 1})">-</button>
+                <input type="text" class="qty-input" value="${item.quantity}" readonly />
+                <button class="qty-btn" onclick="window.Cart.updateQuantity('${item.productId}', ${item.quantity + 1})">+</button>
+              </div>
+            </td>
+            <td>
+              <div class="cart-item-subtotal">${UI.formatINR(item.price * item.quantity)}</div>
+            </td>
+            <td>
+              <button class="btn-remove-item" onclick="window.Cart.removeItem('${item.productId}')" title="Remove item">
+                ✕
+              </button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Calculations
+      const subtotal = window.Cart.getSubtotal();
+      const coupon = window.Cart.appliedCoupon;
+      let discount = 0;
+
+      if (coupon) {
+        if (coupon.discountType === 'percentage') {
+          discount = Math.round((subtotal * coupon.discountValue) / 100);
+          if (coupon.maxDiscount && discount > coupon.maxDiscount) discount = coupon.maxDiscount;
+        } else {
+          discount = coupon.discountValue;
+        }
+      }
+
+      const shipping = subtotal > 999 ? 0 : 99;
+      const total = Math.max(0, subtotal - discount + shipping);
+
+      // DOM updates
+      document.getElementById('cart-subtotal').textContent = UI.formatINR(subtotal);
+      
+      const discRow = document.getElementById('coupon-discount-row');
+      const discVal = document.getElementById('cart-discount');
+      if (discount > 0) {
+        discRow.style.display = 'flex';
+        discVal.textContent = `-${UI.formatINR(discount)}`;
+      } else {
+        discRow.style.display = 'none';
+      }
+
+      document.getElementById('cart-shipping').textContent = shipping === 0 ? 'FREE' : UI.formatINR(shipping);
+      document.getElementById('cart-grand-total').textContent = UI.formatINR(total);
+
+      // Free shipping meter
+      const fill = document.getElementById('free-shipping-fill');
+      const text = document.getElementById('free-shipping-text');
+      if (subtotal >= 999) {
+        fill.style.width = '100%';
+        text.innerHTML = `🎉 <strong>Congratulations!</strong> You have unlocked FREE Express Delivery.`;
+      } else {
+        const remaining = 999 - subtotal;
+        const pct = Math.min(100, Math.round((subtotal / 999) * 100));
+        fill.style.width = `${pct}%`;
+        text.innerHTML = `Add <strong>${UI.formatINR(remaining)}</strong> more to get <strong>FREE Delivery</strong>!`;
+      }
+
+      // Coupon Badge
+      const couponDisplay = document.getElementById('applied-coupon-display');
+      const couponInputGroup = document.getElementById('promo-input-group');
+      if (coupon) {
+        couponDisplay.innerHTML = `
+          <div class="applied-coupon-badge">
+            <span>✓ Coupon <strong>${coupon.code}</strong> applied!</span>
+            <button onclick="window.Cart.removeCoupon()" style="background:none; color:inherit; cursor:pointer; font-size:0.9rem;">✕</button>
+          </div>
+        `;
+        couponDisplay.style.display = 'block';
+        couponInputGroup.style.display = 'none';
+      } else {
+        couponDisplay.style.display = 'none';
+        couponInputGroup.style.display = 'flex';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCartPage();
+      window.addEventListener('cart:change', renderCartPage);
+
+      const applyBtn = document.getElementById('btn-apply-coupon');
+      if (applyBtn) {
+        applyBtn.addEventListener('click', async () => {
+          const input = document.getElementById('coupon-input');
+          const code = input ? input.value.trim() : '';
+          if (!code) {
+            Toast.show('Enter Code', 'Please type a valid coupon code.', 'error');
+            return;
+          }
+          try {
+            const res = await window.Cart.applyCoupon(code);
+            if (res.success) {
+              Toast.show('Coupon Applied', res.message, 'success');
+            } else {
+              Toast.show('Invalid Coupon', res.message, 'error');
+            }
+          } catch (err) {
+            Toast.show('Coupon Error', err.message, 'error');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Operations Center | ROAM & REV</title>
+  
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+
+  <!-- Admin Header -->
+  <header class="navbar" id="site-header">
+    <div class="container nav-inner">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon" style="background:linear-gradient(135deg, #00E5FF, #0088A3);">🛡️</div>
+        <div class="brand-text">
+          <div class="brand-name">ROAM<span>&</span>REV <span style="font-size:0.75rem; background:rgba(0,229,255,0.15); color:var(--accent-cyan); padding:2px 8px; border-radius:4px; margin-left:6px;">ADMIN</span></div>
+          <div class="brand-tagline">STORE MANAGEMENT PORTAL</div>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="/index.html" class="btn btn-secondary btn-sm">View Live Storefront ↗</a>
+        <button class="nav-action-btn" onclick="window.Auth.logout()" title="Logout Admin" style="color:var(--accent-red);">⏻</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content admin-page">
+    <div class="container" style="padding-top: var(--space-8);">
+      
+      <!-- Top Title & Quick Actions -->
+      <div class="admin-header-row" style="margin-bottom: var(--space-8);">
+        <div>
+          <span class="badge-tag badge-tag-cyan">Operations Center</span>
+          <h1 style="margin-top:6px;">STORE METRICS & INVENTORY</h1>
+        </div>
+        <div>
+          <button class="btn btn-primary" onclick="Admin.openAddProductModal()">
+            + Add New Gear Product
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI METRIC STAT CARDS -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon-box kpi-icon-orange">💰</div>
+          <div class="kpi-info">
+            <span class="kpi-label">Total Revenue</span>
+            <span class="kpi-value" id="kpi-revenue">₹0</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon-box kpi-icon-cyan">📦</div>
+          <div class="kpi-info">
+            <span class="kpi-label">Active Orders</span>
+            <span class="kpi-value" id="kpi-orders">0</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon-box kpi-icon-green">🏍️</div>
+          <div class="kpi-info">
+            <span class="kpi-label">Total SKUs</span>
+            <span class="kpi-value" id="kpi-products">0</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon-box kpi-icon-amber">👥</div>
+          <div class="kpi-info">
+            <span class="kpi-label">Rider Accounts</span>
+            <span class="kpi-value" id="kpi-customers">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Tab Bar -->
+      <div class="admin-tab-bar">
+        <button class="admin-tab-btn active" data-tab="overview">Dashboard Overview</button>
+        <button class="admin-tab-btn" data-tab="products">Products & Inventory</button>
+        <button class="admin-tab-btn" data-tab="orders">Orders & Fulfillment</button>
+        <button class="admin-tab-btn" data-tab="coupons">Discount Coupons</button>
+      </div>
+
+      <!-- TAB 1: DASHBOARD OVERVIEW -->
+      <div class="admin-tab-view" id="tab-view-overview">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+          
+          <!-- Low Stock Alert Card -->
+          <div class="admin-table-card" style="padding:24px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+              <h3 style="font-size:1.15rem; color:#FFF;">⚠️ Low Stock Inventory Warnings</h3>
+              <span class="badge-tag badge-tag-orange" id="low-stock-alert-count">0 Critical Items</span>
+            </div>
+            <div id="low-stock-list"></div>
+          </div>
+
+          <!-- Quick Actions & Guidelines -->
+          <div class="admin-table-card" style="padding:24px;">
+            <h3 style="font-size:1.15rem; color:#FFF; margin-bottom:12px;">⚡ Operations Shortcuts</h3>
+            <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.6; margin-bottom:20px;">
+              Manage product listings, update order status timelines with BlueDart courier milestones, and create promotional discount coupons for riders.
+            </p>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <button class="btn btn-secondary btn-block" onclick="Admin.switchTab('products'); Admin.openAddProductModal();">
+                + Create New Product SKU
+              </button>
+              <button class="btn btn-secondary btn-block" onclick="Admin.switchTab('orders');">
+                Review & Update Customer Orders →
+              </button>
+              <button class="btn btn-secondary btn-block" onclick="Admin.switchTab('coupons');">
+                Create Promotional Discount Code →
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB 2: PRODUCTS & INVENTORY -->
+      <div class="admin-tab-view" id="tab-view-products" style="display:none;">
+        <div class="admin-table-card">
+          <div class="table-top-bar">
+            <h3 style="font-size:1.1rem; color:#FFF;">Catalogue Inventory</h3>
+            <button class="btn btn-primary btn-sm" onclick="Admin.openAddProductModal()">
+              + Add Product
+            </button>
+          </div>
+          <div class="admin-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Thumbnail</th>
+                  <th>Product Title & Brand</th>
+                  <th>Category</th>
+                  <th>Compatibility</th>
+                  <th>Price (INR)</th>
+                  <th>Stock</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-products-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: ORDERS & FULFILLMENT -->
+      <div class="admin-tab-view" id="tab-view-orders" style="display:none;">
+        <div class="admin-table-card">
+          <div class="table-top-bar">
+            <h3 style="font-size:1.1rem; color:#FFF;">Customer Orders Management</h3>
+          </div>
+          <div class="admin-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order No. & Date</th>
+                  <th>Customer Info</th>
+                  <th>Items</th>
+                  <th>Total Amount</th>
+                  <th>Payment</th>
+                  <th>Fulfillment Status</th>
+                </tr>
+              </thead>
+              <tbody id="admin-orders-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: COUPONS -->
+      <div class="admin-tab-view" id="tab-view-coupons" style="display:none;">
+        <div style="display:grid; grid-template-columns: 1fr 340px; gap:24px; align-items:start;">
+          
+          <div class="admin-table-card">
+            <div class="table-top-bar">
+              <h3 style="font-size:1.1rem; color:#FFF;">Active Promotional Coupons</h3>
+            </div>
+            <div class="admin-table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Discount</th>
+                    <th>Minimum Order</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-coupons-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Create Coupon Card -->
+          <div class="admin-table-card" style="padding:20px;">
+            <h3 style="font-size:1.1rem; color:#FFF; margin-bottom:16px;">Create New Coupon</h3>
+            <form id="create-coupon-form">
+              <div class="form-group">
+                <label>Coupon Code *</label>
+                <input type="text" id="coupon-code-input" placeholder="e.g. MOTO20" required style="text-transform:uppercase;" />
+              </div>
+              <div class="form-group">
+                <label>Discount Type</label>
+                <select id="coupon-type-select">
+                  <option value="percentage">Percentage Off (%)</option>
+                  <option value="fixed">Fixed Amount (₹)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Discount Value *</label>
+                <input type="number" id="coupon-val-input" placeholder="e.g. 15 or 500" required />
+              </div>
+              <div class="form-group">
+                <label>Minimum Order (₹)</label>
+                <input type="number" id="coupon-min-input" placeholder="e.g. 1999" />
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <input type="text" id="coupon-desc-input" placeholder="Special weekend discount" />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                Activate Coupon
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ADD / EDIT PRODUCT MODAL -->
+  <div id="admin-product-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width:750px; padding:32px;">
+      <button class="modal-close-btn" onclick="Admin.closeProductModal()">✕</button>
+      
+      <h2 id="product-modal-title" style="margin-bottom:24px;">Add New Gear Product</h2>
+      
+      <form id="product-form">
+        <input type="hidden" id="edit-product-id" />
+
+        <div class="checkout-form-grid">
+          <div class="form-group full-width">
+            <label>Product Name *</label>
+            <input type="text" id="prod-input-name" placeholder="e.g. MT-15 Aero Tank Bag 15L" required />
+          </div>
+
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="prod-input-category" required>
+              <option value="motorcycle-accessories">Motorcycle Accessories</option>
+              <option value="travel-accessories">Travel Accessories</option>
+              <option value="riding-gear">Riding Gear</option>
+              <option value="touring-essentials">Touring Essentials</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Brand Name</label>
+            <input type="text" id="prod-input-brand" placeholder="ROAM & REV / Apex Moto" />
+          </div>
+
+          <div class="form-group">
+            <label>Selling Price (₹ INR) *</label>
+            <input type="number" id="prod-input-price" placeholder="2499" required />
+          </div>
+
+          <div class="form-group">
+            <label>Original Price (₹ INR) *</label>
+            <input type="number" id="prod-input-original-price" placeholder="3499" required />
+          </div>
+
+          <div class="form-group">
+            <label>Inventory Stock Quantity *</label>
+            <input type="number" id="prod-input-stock" placeholder="25" required />
+          </div>
+
+          <div class="form-group full-width">
+            <label>Motorcycle Compatibility (Select all that apply)</label>
+            <div style="display:flex; gap:20px; margin-top:8px;">
+              <label class="custom-checkbox-label">
+                <input type="checkbox" id="bike-check-mt15" value="MT-15" />
+                <span>Yamaha MT-15</span>
+              </label>
+              <label class="custom-checkbox-label">
+                <input type="checkbox" id="bike-check-ns200" value="NS200" />
+                <span>Bajaj Pulsar NS200</span>
+              </label>
+              <label class="custom-checkbox-label">
+                <input type="checkbox" id="bike-check-univ" value="Universal" checked />
+                <span>Universal Motorcycles</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label>High-Definition Image URLs (One URL per line)</label>
+            <textarea id="prod-input-images" placeholder="https://images.unsplash.com/photo-..." rows="3"></textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Full Technical Description *</label>
+            <textarea id="prod-input-desc" placeholder="Describe the materials, waterproofing, and performance..." rows="4" required></textarea>
+          </div>
+        </div>
+
+        <div style="margin-top:24px; display:flex; justify-content:flex-end; gap:12px;">
+          <button type="button" class="btn btn-secondary" onclick="Admin.closeProductModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-lg">Save Gear Item 💾</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/wishlist.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

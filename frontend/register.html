@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Adventurer Account | ROAM & REV</title>
+  
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/account.css" />
+</head>
+<body>
+
+  <header class="navbar" id="site-header">
+    <div class="container nav-inner">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <div class="brand-name">ROAM<span>&</span>REV</div>
+          <div class="brand-tagline">MOTO & OVERLAND CO.</div>
+        </div>
+      </a>
+      <a href="/index.html" class="btn btn-secondary btn-sm">← Back to Store</a>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="badge-tag badge-tag-orange" style="margin-bottom:8px;">New Adventurer</span>
+        <h2>JOIN THE EXPEDITION</h2>
+        <p>Create an account to save vehicle fitments and track dispatches.</p>
+      </div>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="reg-name" placeholder="e.g. Arjun Kapoor" required />
+        </div>
+
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" id="reg-email" placeholder="arjun@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="tel" id="reg-phone" placeholder="+91 98765 00000" />
+        </div>
+
+        <div class="form-group">
+          <label>Password (Min. 6 Characters) *</label>
+          <input type="password" id="reg-password" placeholder="••••••••" minlength="6" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="reg-submit-btn">
+          Create Adventurer Profile →
+        </button>
+      </form>
+
+      <div style="text-align:center; margin-top:20px; font-size:0.9rem; color:var(--text-secondary);">
+        Already registered? <a href="/login.html" style="color:var(--accent-orange); font-weight:700;">Sign In</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/wishlist.js"></script>
+  <script src="/js/ui.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('register-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('reg-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const phone = document.getElementById('reg-phone').value.trim();
+        const password = document.getElementById('reg-password').value;
+        const btn = document.getElementById('reg-submit-btn');
+
+        btn.disabled = true;
+        btn.textContent = 'Registering Profile...';
+
+        try {
+          const res = await window.Auth.register({ name, email, phone, password });
+          if (res.success) {
+            Toast.show('Account Created!', `Welcome aboard, ${res.user.name}`, 'success');
+            setTimeout(() => {
+              window.location.href = '/orders.html';
+            }, 800);
+          }
+        } catch (err) {
+          Toast.show('Registration Error', err.message, 'error');
+          btn.disabled = false;
+          btn.textContent = 'Create Adventurer Profile →';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

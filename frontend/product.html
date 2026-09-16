@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details | ROAM & REV</title>
+  <meta name="description" content="Technical specifications, motorcycle fitment, and reviews for premium expedition accessories." />
+  
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/product.css" />
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="navbar" id="site-header">
+    <div class="container nav-inner">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <div class="brand-name">ROAM<span>&</span>REV</div>
+          <div class="brand-tagline">MOTO & OVERLAND CO.</div>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="/index.html" class="nav-link">Home</a>
+        <a href="/shop.html" class="nav-link">Shop All</a>
+        <a href="/shop.html?category=motorcycle-accessories" class="nav-link">Motorcycle Gear</a>
+        <a href="/shop.html?category=travel-accessories" class="nav-link">Travel Gear</a>
+        <a href="/shop.html?category=riding-gear" class="nav-link">Riding Armor</a>
+        <a href="/shop.html?sort=newest" class="nav-link badge-pill">New Arrivals</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="search-wrapper">
+          <div class="search-input-container">
+            <span>🔍</span>
+            <input type="text" id="global-search-input" placeholder="Search gear..." autocomplete="off" />
+          </div>
+          <div class="search-suggestions" id="global-search-suggestions"></div>
+        </div>
+
+        <a href="/wishlist.html" class="nav-action-btn" title="Saved Wishlist">
+          ♥
+          <span class="nav-badge-counter wishlist-badge-count" style="display:none;">0</span>
+        </a>
+
+        <a href="/cart.html" class="nav-action-btn" title="Shopping Cart">
+          🛒
+          <span class="nav-badge-counter cart-badge-count" style="display:none;">0</span>
+        </a>
+
+        <div class="account-dropdown-wrapper">
+          <button class="nav-action-btn" id="account-menu-trigger" title="Account">👤</button>
+          <div class="account-menu" id="account-dropdown"></div>
+        </div>
+
+        <button class="nav-action-btn mobile-toggle" id="mobile-nav-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content product-detail-page">
+    <div class="container" id="product-container">
+      
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumb-nav" id="breadcrumb-nav">
+        <a href="/index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="/shop.html">Shop</a>
+        <span class="separator">/</span>
+        <span class="current">Loading Gear...</span>
+      </nav>
+
+      <!-- Main Product Split Grid -->
+      <div class="product-main-grid">
+        
+        <!-- Left Column: Gallery & Magnifier Zoom -->
+        <div class="product-gallery">
+          <div class="main-image-container" id="product-main-img-container">
+            <img id="product-main-img" src="" alt="Product view" />
+          </div>
+          <div class="thumbnail-row" id="product-thumbnails-row"></div>
+        </div>
+
+        <!-- Right Column: Specs, Availability & Purchase CTA -->
+        <div class="product-info-column">
+          <div class="brand-badge" id="product-brand">ROAM & REV</div>
+          <h1 class="product-detail-title" id="product-title">Loading Product...</h1>
+
+          <div class="product-meta-row">
+            <div id="product-rating-stars" style="display:flex;"></div>
+            <a href="#tab-reviews" onclick="document.querySelector('[data-tab=tab-reviews]').click()" id="product-review-count" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:underline;">
+              (0 verified reviews)
+            </a>
+          </div>
+
+          <!-- Certified Compatibility Alert Banner -->
+          <div class="compatibility-banner" id="product-compatibility-banner"></div>
+
+          <!-- Pricing Box -->
+          <div class="pricing-box">
+            <span class="price-main" id="product-price">₹0</span>
+            <span class="price-strike" id="product-original-price"></span>
+            <span class="discount-pill-large" id="product-discount-pill"></span>
+          </div>
+
+          <!-- Stock Indicator -->
+          <div class="stock-indicator" id="product-stock-indicator">
+            <span class="stock-dot"></span> In Stock & Ready for Rapid Dispatch
+          </div>
+
+          <!-- Short Summary -->
+          <p class="product-summary-text" id="product-description-text"></p>
+
+          <!-- Key Highlights Bullets -->
+          <div class="feature-bullets" id="product-feature-list"></div>
+
+          <!-- Purchase Controls -->
+          <div class="purchase-actions-box">
+            <div class="quantity-row">
+              <span class="quantity-label">Quantity:</span>
+              <div class="quantity-stepper">
+                <button class="qty-btn" id="qty-dec-btn">-</button>
+                <input type="text" class="qty-input" id="qty-input" value="1" readonly />
+                <button class="qty-btn" id="qty-inc-btn">+</button>
+              </div>
+            </div>
+
+            <div class="action-buttons-row">
+              <button class="btn-add-cart-main" id="detail-add-cart-btn">
+                <span>🛒</span> Add to Cart
+              </button>
+              <button class="btn-buy-now" id="detail-buy-now-btn">
+                ⚡ Buy Now
+              </button>
+              <button class="btn-wishlist-detail" id="detail-wishlist-btn" title="Save to Wishlist">
+                ♥
+              </button>
+            </div>
+          </div>
+
+          <!-- Pincode Delivery Estimator -->
+          <div class="pincode-checker-box">
+            <div class="pincode-title">
+              <span>📍</span> <strong>Delivery & Dispatch Estimator</strong>
+            </div>
+            <div class="pincode-input-row">
+              <input type="text" id="pincode-input" placeholder="Enter 6-digit PIN (e.g. 560001)" maxlength="6" />
+              <button type="button" class="btn btn-sm btn-primary" onclick="UI.checkDeliveryPin(document.getElementById('pincode-input').value)">Check PIN</button>
+            </div>
+            <div id="pincode-status-msg" class="pincode-result" style="display:none;"></div>
+          </div>
+
+          <!-- Trust Guarantees -->
+          <div class="trust-perks-row">
+            <div class="trust-perk">
+              <span class="trust-perk-icon">🛡️</span>
+              <div>
+                <strong>1 Year Warranty</strong><br>
+                Manufacturer backing
+              </div>
+            </div>
+            <div class="trust-perk">
+              <span class="trust-perk-icon">⚡</span>
+              <div>
+                <strong>Free Delivery</strong><br>
+                Orders over ₹999
+              </div>
+            </div>
+            <div class="trust-perk">
+              <span class="trust-perk-icon">🔄</span>
+              <div>
+                <strong>7 Days Return</strong><br>
+                Guaranteed fitment
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tabbed Information Section -->
+      <div class="product-tabs-container">
+        <div class="tab-headers">
+          <button class="tab-btn active" data-tab="tab-specs">Technical Specifications</button>
+          <button class="tab-btn" data-tab="tab-features">Features & Installation</button>
+          <button class="tab-btn" data-tab="tab-reviews">Customer Reviews</button>
+        </div>
+
+        <!-- Tab 1: Specs -->
+        <div class="tab-content active" id="tab-specs">
+          <table class="specs-table">
+            <tbody id="specs-table-body"></tbody>
+          </table>
+        </div>
+
+        <!-- Tab 2: Installation -->
+        <div class="tab-content" id="tab-features">
+          <div style="max-width:800px; line-height:1.7; color:var(--text-secondary);">
+            <h3 style="color:#FFF; margin-bottom:12px;">Overland Engineering & Rigorous Testing</h3>
+            <p style="margin-bottom:16px;">
+              Every accessory produced for our lineup is subjected to extensive dynamic vibration sweeps on our proprietary test rig to simulate high-RPM single and parallel-twin engine harmonics.
+            </p>
+            <h4 style="color:#FFF; margin-bottom:8px;">Easy Installation Guidelines:</h4>
+            <ul style="list-style:disc; padding-left:20px; display:flex; flex-direction:column; gap:8px;">
+              <li>Utilizes factory motorcycle bolt anchor points; zero chassis cutting or drilling required.</li>
+              <li>High-tensile Grade 12.9 hardware provided in the package with vibration-proof nylon-insert lock nuts.</li>
+              <li>Always torque bolts according to motorcycle manufacturer specifications (recommend applying medium threadlocker).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab 3: Reviews -->
+        <div class="tab-content" id="tab-reviews">
+          <div class="reviews-tab-grid">
+            <!-- Left: Average Rating -->
+            <div class="rating-overview-card">
+              <div class="rating-number-huge" id="reviews-average-score">4.9</div>
+              <div id="reviews-total-stars" style="display:flex; justify-content:center; margin-bottom:8px; color:#F59E0B;">★★★★★</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" id="reviews-total-count">Verified Rider Reviews</div>
+            </div>
+
+            <!-- Right: Reviews List & Write Review Form -->
+            <div>
+              <div class="reviews-list-container" id="reviews-list-container"></div>
+
+              <!-- Write a Review Form -->
+              <div class="review-form-card">
+                <h4 style="color:#FFF;">Share Your Field Experience</h4>
+                <form id="write-review-form">
+                  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+                    <div class="form-group">
+                      <label>Your Name *</label>
+                      <input type="text" id="review-name-input" placeholder="e.g. Kabir S." required />
+                    </div>
+                    <div class="form-group">
+                      <label>Motorcycle / Bike Owned</label>
+                      <input type="text" id="review-bike-input" placeholder="e.g. Yamaha MT-15 V2" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Overall Star Rating *</label>
+                    <select id="review-rating-select">
+                      <option value="5">★★★★★ - Outstanding Quality (5 Stars)</option>
+                      <option value="4">★★★★☆ - Very Good (4 Stars)</option>
+                      <option value="3">★★★☆☆ - Average (3 Stars)</option>
+                      <option value="2">★★☆☆☆ - Below Expectations (2 Stars)</option>
+                      <option value="1">★☆☆☆☆ - Poor (1 Star)</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Review Headline *</label>
+                    <input type="text" id="review-title-input" placeholder="e.g. Perfect fitment on MT-15 fuel tank!" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label>Detailed Feedback *</label>
+                    <textarea id="review-comment-input" placeholder="Describe the build quality, weather resistance, and highway performance..." required></textarea>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">
+                    Submit Authenticated Review
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Gear Grid -->
+      <div style="margin-top:var(--space-16);">
+        <div class="section-header" style="text-align:left;">
+          <span class="subtitle">Complete Your Rig</span>
+          <h2>RECOMMENDED COMPATIBLE GEAR</h2>
+        </div>
+        <div class="grid grid-cols-4 gap-6" id="related-products-grid"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2026 ROAM & REV Moto & Overland Outfitters.</div>
+        <div class="payment-badges">
+          <span class="pay-badge">UPI</span>
+          <span class="pay-badge">RuPay</span>
+          <span class="pay-badge">VISA</span>
+          <span class="pay-badge">MasterCard</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/wishlist.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/product.js"></script>
+</body>
+</html>

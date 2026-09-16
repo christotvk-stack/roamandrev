@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Step Checkout | ROAM & REV</title>
+  <meta name="description" content="Secure multi-step checkout for motorcycle gear and travel accessories." />
+  
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/checkout.css" />
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="navbar" id="site-header">
+    <div class="container nav-inner">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <div class="brand-name">ROAM<span>&</span>REV</div>
+          <div class="brand-tagline">MOTO & OVERLAND CO.</div>
+        </div>
+      </a>
+
+      <div style="font-family:var(--font-tech); font-size:0.85rem; color:var(--accent-orange); display:flex; align-items:center; gap:6px;">
+        <span>🔒</span> 256-BIT ENCRYPTED CHECKOUT
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content checkout-page">
+    <div class="container" style="padding-top: var(--space-8);">
+      
+      <!-- Stepper Progress Header -->
+      <div class="checkout-stepper">
+        <div class="step-node active" data-step="1">
+          <div class="step-circle">1</div>
+          <span>Contact</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-node" data-step="2">
+          <div class="step-circle">2</div>
+          <span>Shipping</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-node" data-step="3">
+          <div class="step-circle">3</div>
+          <span>Delivery</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-node" data-step="4">
+          <div class="step-circle">4</div>
+          <span>Payment</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-node" data-step="5">
+          <div class="step-circle">5</div>
+          <span>Confirmation</span>
+        </div>
+      </div>
+
+      <div id="checkout-wizard-container">
+        <div class="checkout-layout">
+          
+          <!-- Left Column: Step Views -->
+          <div class="checkout-steps-column">
+            
+            <!-- STEP 1: CONTACT INFO -->
+            <div class="checkout-step-section active" id="checkout-step-1">
+              <h2 class="step-heading">
+                <span class="step-heading-icon">👤</span> Customer Contact Information
+              </h2>
+              <form id="step-1-form">
+                <div class="checkout-form-grid">
+                  <div class="form-group full-width">
+                    <label>Full Name *</label>
+                    <input type="text" id="cust-name" placeholder="e.g. Kabir Sharma" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Email Address (For Invoicing) *</label>
+                    <input type="email" id="cust-email" placeholder="rider@roamrev.com" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Mobile Number (For Courier Updates) *</label>
+                    <input type="tel" id="cust-phone" placeholder="+91 98765 43210" required />
+                  </div>
+                </div>
+                <div style="margin-top:24px; display:flex; justify-content:flex-end;">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    Continue to Shipping Address →
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- STEP 2: SHIPPING ADDRESS -->
+            <div class="checkout-step-section" id="checkout-step-2">
+              <h2 class="step-heading">
+                <span class="step-heading-icon">📍</span> Delivery Shipping Address
+              </h2>
+              <form id="step-2-form">
+                <div class="checkout-form-grid">
+                  <div class="form-group full-width">
+                    <label>Recipient Full Name *</label>
+                    <input type="text" id="ship-fullname" placeholder="Recipient's Name" required />
+                  </div>
+                  <div class="form-group full-width">
+                    <label>Street Address, Flat / Apartment / House No. *</label>
+                    <input type="text" id="ship-street" placeholder="e.g. Flat 304, Pine Crest Apartments, 12th Main" required />
+                  </div>
+                  <div class="form-group">
+                    <label>City *</label>
+                    <input type="text" id="ship-city" placeholder="Bengaluru" required />
+                  </div>
+                  <div class="form-group">
+                    <label>State *</label>
+                    <select id="ship-state" required>
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Delhi">Delhi NCR</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Telangana">Telangana</option>
+                      <option value="Kerala">Kerala</option>
+                      <option value="Gujarat">Gujarat</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="West Bengal">West Bengal</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>PIN Postal Code *</label>
+                    <input type="text" id="ship-postal" placeholder="560038" maxlength="6" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Contact Phone at Address *</label>
+                    <input type="tel" id="ship-phone" placeholder="9876543210" required />
+                  </div>
+                  <div class="form-group full-width">
+                    <label>Landmark (Optional)</label>
+                    <input type="text" id="ship-landmark" placeholder="Near Metro Pillar or Landmark" />
+                  </div>
+                </div>
+                <div style="margin-top:24px; display:flex; justify-content:space-between;">
+                  <button type="button" class="btn btn-secondary" onclick="Checkout.goToStep(1)">
+                    ← Back to Contact
+                  </button>
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    Continue to Delivery Method →
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- STEP 3: DELIVERY METHOD -->
+            <div class="checkout-step-section" id="checkout-step-3">
+              <h2 class="step-heading">
+                <span class="step-heading-icon">🚀</span> Select Shipping Tier
+              </h2>
+              <div class="payment-methods-grid">
+                <label class="payment-method-card selected">
+                  <div class="payment-method-left">
+                    <input type="radio" name="delivery-option" value="standard" class="payment-radio" checked />
+                    <div>
+                      <div class="payment-title">Standard Express Ground Courier</div>
+                      <div class="payment-desc">Estimated delivery: 3 to 5 business days nationwide.</div>
+                    </div>
+                  </div>
+                  <div style="font-family:var(--font-tech); font-weight:700; color:var(--accent-green);">
+                    FREE (Orders > ₹999)
+                  </div>
+                </label>
+
+                <label class="payment-method-card">
+                  <div class="payment-method-left">
+                    <input type="radio" name="delivery-option" value="express" class="payment-radio" />
+                    <div>
+                      <div class="payment-title">BlueDart Priority Air Cargo (Urgent Dispatch)</div>
+                      <div class="payment-desc">Estimated delivery: 1 to 2 business days guaranteed.</div>
+                    </div>
+                  </div>
+                  <div style="font-family:var(--font-tech); font-weight:700; color:var(--accent-orange);">
+                    +₹150
+                  </div>
+                </label>
+              </div>
+
+              <div style="margin-top:24px; display:flex; justify-content:space-between;">
+                <button type="button" class="btn btn-secondary" onclick="Checkout.goToStep(2)">
+                  ← Back to Address
+                </button>
+                <button type="button" class="btn btn-primary btn-lg" id="step-3-next-btn">
+                  Continue to Payment →
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 4: PAYMENT OPTIONS -->
+            <div class="checkout-step-section" id="checkout-step-4">
+              <h2 class="step-heading">
+                <span class="step-heading-icon">💳</span> Secure Payment Gateway
+              </h2>
+
+              <div class="payment-methods-grid">
+                <!-- Method 1: UPI -->
+                <div class="payment-method-card selected" data-method="upi">
+                  <div class="payment-method-left">
+                    <input type="radio" name="pay-method" value="upi" class="payment-radio" checked />
+                    <div>
+                      <div class="payment-title">Instant UPI (GPay, PhonePe, Paytm, BHIM)</div>
+                      <div class="payment-desc">Scan Dynamic QR Code or enter your Virtual Payment Address (VPA)</div>
+                    </div>
+                  </div>
+                  <span class="badge-tag badge-tag-green">Fastest</span>
+                </div>
+
+                <!-- Method 2: Cards -->
+                <div class="payment-method-card" data-method="card">
+                  <div class="payment-method-left">
+                    <input type="radio" name="pay-method" value="card" class="payment-radio" />
+                    <div>
+                      <div class="payment-title">Credit / Debit Card</div>
+                      <div class="payment-desc">Visa, MasterCard, RuPay with 3D Secure OTP verification</div>
+                    </div>
+                  </div>
+                  <span>💳</span>
+                </div>
+
+                <!-- Method 3: COD -->
+                <div class="payment-method-card" data-method="cod">
+                  <div class="payment-method-left">
+                    <input type="radio" name="pay-method" value="cod" class="payment-radio" />
+                    <div>
+                      <div class="payment-title">Cash on Delivery (COD)</div>
+                      <div class="payment-desc">Pay cash or scan courier QR upon doorstep delivery</div>
+                    </div>
+                  </div>
+                  <span>💵</span>
+                </div>
+              </div>
+
+              <!-- Dynamic Subpanel: UPI QR Simulator -->
+              <div class="payment-subpanel active" id="payment-subpanel-upi">
+                <div class="upi-qr-box">
+                  <div class="mock-qr-code">
+                    <svg viewBox="0 0 100 100" width="130" height="130">
+                      <rect x="10" y="10" width="30" height="30" fill="#000" />
+                      <rect x="15" y="15" width="20" height="20" fill="#FFF" />
+                      <rect x="20" y="20" width="10" height="10" fill="#000" />
+                      <rect x="60" y="10" width="30" height="30" fill="#000" />
+                      <rect x="65" y="15" width="20" height="20" fill="#FFF" />
+                      <rect x="70" y="20" width="10" height="10" fill="#000" />
+                      <rect x="10" y="60" width="30" height="30" fill="#000" />
+                      <rect x="15" y="65" width="20" height="20" fill="#FFF" />
+                      <rect x="20" y="70" width="10" height="10" fill="#000" />
+                      <rect x="50" y="50" width="15" height="15" fill="#FF5500" />
+                      <rect x="70" y="60" width="10" height="10" fill="#000" />
+                      <rect x="60" y="80" width="15" height="10" fill="#000" />
+                    </svg>
+                  </div>
+                  <div style="font-size:0.85rem; color:var(--text-secondary);">
+                    Scan with Google Pay, PhonePe, or BHIM<br>
+                    <strong>UPI ID:</strong> <code style="color:var(--accent-cyan);">roamrev.merchandise@hdfcbank</code>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dynamic Subpanel: Card Form Simulator -->
+              <div class="payment-subpanel" id="payment-subpanel-card">
+                <div class="checkout-form-grid">
+                  <div class="form-group full-width">
+                    <label>Card Number</label>
+                    <input type="text" placeholder="4111 2222 3333 4444" maxlength="19" />
+                  </div>
+                  <div class="form-group">
+                    <label>Expiry Date</label>
+                    <input type="text" placeholder="MM / YY" maxlength="5" />
+                  </div>
+                  <div class="form-group">
+                    <label>CVV / CVC</label>
+                    <input type="password" placeholder="•••" maxlength="4" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dynamic Subpanel: COD Info -->
+              <div class="payment-subpanel" id="payment-subpanel-cod">
+                <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.6;">
+                  ✓ A verification SMS will be sent before courier dispatch.<br>
+                  ✓ Please keep exact cash or UPI phone ready upon package delivery.
+                </p>
+              </div>
+
+              <div style="margin-top:24px; display:flex; justify-content:space-between;">
+                <button type="button" class="btn btn-secondary" onclick="Checkout.goToStep(3)">
+                  ← Back to Delivery
+                </button>
+                <button type="button" class="btn btn-primary btn-lg" id="place-order-btn">
+                  CONFIRM & PLACE ORDER ⚡
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 5: ORDER CONFIRMATION -->
+            <div class="checkout-step-section" id="checkout-step-5">
+              <div class="order-success-card">
+                <div class="success-check-circle">✓</div>
+                <h2>EXPEDITION ORDER REGISTERED!</h2>
+                <p style="color:var(--text-secondary); margin-top:8px;">
+                  Thank you, <strong id="conf-customer-name">Adventurer</strong>. Your order has been placed successfully.
+                </p>
+
+                <div class="order-id-badge" id="conf-order-number">
+                  RR-2026-00000
+                </div>
+
+                <div style="background:var(--bg-tertiary); border:1px solid var(--border-subtle); border-radius:12px; padding:20px; max-width:480px; width:100%; text-align:left; margin-bottom:24px;">
+                  <div style="font-size:0.9rem; margin-bottom:8px;">
+                    <strong>BlueDart Tracking Number:</strong> <span id="conf-tracking-number" style="color:var(--accent-cyan); font-family:var(--font-tech); font-weight:700;">BLUEDART-000000</span>
+                  </div>
+                  <div style="font-size:0.9rem; margin-bottom:8px;">
+                    <strong>Total Amount Paid:</strong> <span id="conf-order-total" style="color:var(--accent-orange); font-family:var(--font-tech); font-weight:800;">₹0</span>
+                  </div>
+                  <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.5;">
+                    A confirmation email with invoice and dispatch tracking updates has been sent to your inbox.
+                  </div>
+                </div>
+
+                <div style="display:flex; gap:12px;">
+                  <a href="/orders.html" class="btn btn-primary">
+                    View & Track Order Timeline
+                  </a>
+                  <a href="/shop.html" class="btn btn-secondary">
+                    Continue Exploring
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Live Order Summary -->
+          <div class="checkout-summary-column">
+            <div class="cart-summary-card">
+              <h3 class="summary-title">Gear in this Order</h3>
+              <div id="checkout-items-list" style="max-height:300px; overflow-y:auto;"></div>
+
+              <div class="summary-breakdown">
+                <div class="summary-row">
+                  <span>Subtotal</span>
+                  <span id="checkout-subtotal">₹0</span>
+                </div>
+                <div class="summary-row">
+                  <span>Coupon Savings</span>
+                  <span id="checkout-discount" style="color:var(--accent-green);">₹0</span>
+                </div>
+                <div class="summary-row">
+                  <span>Shipping Fee</span>
+                  <span id="checkout-shipping">₹0</span>
+                </div>
+                <div class="summary-row total-row">
+                  <span>Payable Total</span>
+                  <span class="total-amount" id="checkout-total">₹0</span>
+                </div>
+              </div>
+
+              <div style="font-size:0.75rem; color:var(--text-muted); text-align:center; line-height:1.4;">
+                🛡️ Guaranteed Fitment Promise • 100% Genuine Overland Accessories
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2026 ROAM & REV Moto & Overland Outfitters.</div>
+        <div class="payment-badges">
+          <span class="pay-badge">UPI</span>
+          <span class="pay-badge">RuPay</span>
+          <span class="pay-badge">VISA</span>
+          <span class="pay-badge">MasterCard</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/wishlist.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/checkout.js"></script>
+</body>
+</html>
